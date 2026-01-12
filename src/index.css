@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
+
+@import "tailwindcss";
+
+
+@theme {
+  --color-brand-green: #8BB722;
+  --color-brand-light: #F7F4EE;
+
+    /* Fonts */
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Poppins", sans-serif;
+  --font-work: "Work Sans", sans-serif;
+  --font-lora: "Lora", serif;
+  --font-mono: "Inconsolata", monospace;
+
+    @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes infinite-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+.animate-infinite-scroll {
+  display: flex;
+  width: max-content;
+  animation: infinite-scroll 40s linear infinite;
+}
+
+@layer components {
+  /* This makes the horizontal scroll work and hides the ugly scrollbar */
+  .scroll-container {
+    @apply flex gap-6 overflow-x-auto pb-6 transition-all;
+    scrollbar-width: none; /* Firefox */
+  }
+  .scroll-container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .section-title {
+    @apply text-3xl font-serif font-bold text-gray-800;
+  }
+
+  .category-card {
+    @apply flex flex-col items-center p-4 rounded-2xl transition-all duration-300;
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 20s linear infinite;
+}
+
+.animate-infinite-scroll:hover {
+  animation-play-state: paused;
+}
