@@ -135,20 +135,20 @@ const Cart = () => {
       className="bg-white rounded-3xl p-8 w-[90%] max-w-md text-center shadow-2xl"
     >
       <h3 className="text-2xl font-serif font-bold mb-3">
-        Oops! 🙈
+        Sorry!
       </h3>
 
       <p className="text-gray-600 mb-6">
-        Checkout feature abhi bana nahi hai 😅  
+        Checkout feature coming soon!  
         <br />
-        Jaldi hi aa raha hai!
+         Your cart will be saved.
       </p>
 
       <button
         onClick={() => setShowPopup(false)}
         className="bg-brand-green text-white px-6 py-3 rounded-xl font-bold hover:scale-105 transition"
       >
-        Okay 💚
+        Okay
       </button>
     </motion.div>
   </div>
