@@ -8,7 +8,7 @@ const API_URL = "http://localhost:5000/api/cart";
 export const CartProvider = ({ children }) => {
   const [items, setItems] = useState([]);
 
-  // 🔹 load cart when app starts
+  // load cart on app start
   useEffect(() => {
     fetchCart();
   }, []);
@@ -16,7 +16,7 @@ export const CartProvider = ({ children }) => {
   const fetchCart = async () => {
     try {
       const res = await axios.get(API_URL);
-      setItems(res.data);
+      setItems(res.data.items); // ✅ FIX
     } catch (err) {
       console.error("Failed to fetch cart", err);
     }
@@ -25,7 +25,7 @@ export const CartProvider = ({ children }) => {
   const addToCart = async (item) => {
     try {
       const res = await axios.post(`${API_URL}/add`, item);
-      setItems(res.data);
+      setItems(res.data.items); // ✅ FIX
     } catch (err) {
       console.error("Add to cart failed", err);
     }
@@ -37,7 +37,7 @@ export const CartProvider = ({ children }) => {
         id,
         quantity,
       });
-      setItems(res.data);
+      setItems(res.data.items); // ✅ FIX
     } catch (err) {
       console.error("Update quantity failed", err);
     }
@@ -46,7 +46,7 @@ export const CartProvider = ({ children }) => {
   const removeFromCart = async (id) => {
     try {
       const res = await axios.delete(`${API_URL}/${id}`);
-      setItems(res.data);
+      setItems(res.data.items); // ✅ FIX
     } catch (err) {
       console.error("Remove from cart failed", err);
     }

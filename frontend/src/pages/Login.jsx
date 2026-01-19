@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 import { Mail, Lock, Eye, EyeOff, Phone } from "lucide-react";
 // import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
@@ -21,30 +21,39 @@ const [userOtp, setUserOtp] = useState("");   // Store the 6-digit code user typ
     password: "",
     name: "",
   });
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // 📱 PHONE (UI ONLY)
+  // 🚨 OTP IS VISUAL ONLY
   if (loginMethod === "phone") {
     if (!otpSent) {
-      setOtpSent(true); // show OTP input
+      // Just flip UI state
+      setOtpSent(true);
     } else {
-      alert("Login successful (UI only)");
-      login("fake-token");
-      navigate("/");
+      alert("OTP flow is UI-only for now.");
     }
     return;
   }
 
-  // 📧 EMAIL (UI ONLY)
-  if (isLogin) {
-    alert("Login successful (UI only)");
-  } else {
-    alert("Account created successfully (UI only)");
-  }
+  // ✅ REAL AUTH (EMAIL)
+  try {
+    const url = isLogin
+      ? "http://localhost:5000/api/auth/login"
+      : "http://localhost:5000/api/auth/signup";
 
-  login("fake-token"); // fake auth
-  navigate("/");
+    const res = await axios.post(url, {
+      email: formData.email,
+      password: formData.password,
+      name: formData.name,
+    });
+
+    // SAME AS YOUR WORKING PROJECT
+    login(res.data.token);
+    navigate("/");
+
+  } catch (err) {
+    alert(err.response?.data?.message || "Authentication failed");
+  }
 };
 
   return (
