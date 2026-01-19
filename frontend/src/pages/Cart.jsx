@@ -141,18 +141,14 @@ const Cart = () => {
       <p className="text-gray-600 mb-6">
         Checkout feature coming soon!  
         <br />
-<<<<<<< HEAD:src/pages/Cart.jsx
-         Your cart will be saved.
-=======
         Your cart will be saved.
->>>>>>> fffc92d (Restructured project: added frontend and backend folders):frontend/src/pages/Cart.jsx
       </p>
 
       <button
         onClick={() => setShowPopup(false)}
         className="bg-brand-green text-white px-6 py-3 rounded-xl font-bold hover:scale-105 transition"
       >
-        Okay
+        Okay 💚
       </button>
     </motion.div>
   </div>
