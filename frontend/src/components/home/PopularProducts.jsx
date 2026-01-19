@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence, hover } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ProductCard from "./ProductCard";
 
 const tabs = [
@@ -46,25 +46,29 @@ const products = {
   ],
 };
 
+
 const PopularProducts = () => {
   const [activeTab, setActiveTab] = useState("All");
 
-  // Removed TypeScript 'as keyof' syntax for .jsx
   const currentProducts = products[activeTab] || products.All;
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-12">
+    <section className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-8 sm:py-12">
+      
       {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10">
-        <h2 className="section-title">Popular Products</h2>
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6 mb-8 sm:mb-10">
+        
+        <h2 className="section-title text-xl sm:text-2xl lg:text-3xl">
+          Popular Products
+        </h2>
 
-        {/* Tabs - Scrollable on mobile */}
+        {/* Tabs */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`tab-item whitespace-nowrap px-6 py-2 rounded-full text-sm font-bold transition-all ${
+              className={`tab-item whitespace-nowrap px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold transition-all ${
                 activeTab === tab 
                 ? "bg-brand-green text-white shadow-md shadow-brand-green/20" 
                 : "bg-gray-50 text-gray-500 hover:bg-gray-100"
@@ -84,7 +88,14 @@ const PopularProducts = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="
+            grid 
+            grid-cols-1 
+            sm:grid-cols-2 
+            md:grid-cols-3 
+            lg:grid-cols-4 
+            gap-4 sm:gap-6
+          "
         >
           {currentProducts.map((product, index) => (
             <motion.div
