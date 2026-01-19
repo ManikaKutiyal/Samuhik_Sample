@@ -8,8 +8,8 @@ const app = express();
 
 app.use(cors({
   origin: "https://samuhik-sample.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  methods: ["GET","POST","PUT","DELETE"],
+  allowedHeaders: ["Content-Type"]
 }));
 
 app.use(express.json());
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 });
 
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("Mongo connected"))
+  .then(()=> console.log("Mongo connected"))
   .catch(err => console.log(err));
 
-module.exports = app;   // ⭐ IMPORTANT
+module.exports = app;
