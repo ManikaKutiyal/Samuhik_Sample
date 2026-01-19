@@ -3,7 +3,7 @@ import axios from "axios";
 
 const CartContext = createContext(undefined);
 
-const API_URL = "https://samuhik-sample-2l97.vercel.app/api/cart";
+const API_URL = "https://samuhik-sample-2l97.vercel.app/cart";
 
 export const CartProvider = ({ children }) => {
   const [items, setItems] = useState([]);
