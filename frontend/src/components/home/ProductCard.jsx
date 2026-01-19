@@ -41,6 +41,11 @@ const ProductCard = ({
         rounded-2xl overflow-hidden
         shadow-sm hover:shadow-xl
         transition-all group
+
+        w-full
+        sm:max-w-[260px]
+        md:max-w-[280px]
+        lg:max-w-[300px]
       "
     >
       {/* IMAGE */}
@@ -53,7 +58,7 @@ const ProductCard = ({
             w-full h-full object-cover
             transition-transform duration-500
             group-hover:scale-105
-            bg-[#f8f7f7] 
+            bg-[#f8f7f7]
           "
         />
 
@@ -64,11 +69,10 @@ const ProductCard = ({
             className="
               absolute inset-0
               w-full h-full object-cover
-              
               opacity-0
               group-hover:opacity-100
               transition-opacity duration-500
-              bg-[#f8f7f7] 
+              bg-[#f8f7f7]
             "
           />
         )}
@@ -80,8 +84,10 @@ const ProductCard = ({
             setIsWishlisted(!isWishlisted);
           }}
           className={`
-            absolute top-3 right-3
-            w-8 h-8 rounded-full
+            absolute top-2 right-2
+            sm:top-3 sm:right-3
+            w-7 h-7 sm:w-8 sm:h-8
+            rounded-full
             flex items-center justify-center
             shadow-sm transition-all
             ${
@@ -91,16 +97,18 @@ const ProductCard = ({
             }
           `}
         >
-          <Heart size={16} fill={isWishlisted ? "currentColor" : "none"} />
+          <Heart size={14} className="sm:hidden" fill={isWishlisted ? "currentColor" : "none"} />
+          <Heart size={16} className="hidden sm:block" fill={isWishlisted ? "currentColor" : "none"} />
         </button>
 
         {/* DISCOUNT */}
         {originalPrice && (
           <div
             className="
-              absolute top-3 left-3
+              absolute top-2 left-2
+              sm:top-3 sm:left-3
               bg-[hsl(152_45%_25%)]
-              text-white text-[10px]
+              text-white text-[9px] sm:text-[10px]
               font-bold px-2 py-1
               rounded-md shadow-sm
             "
@@ -111,11 +119,14 @@ const ProductCard = ({
       </div>
 
       {/* CONTENT */}
-      <div className="p-4 space-y-3">
+      <div className="p-3 sm:p-4 space-y-2 sm:space-y-3">
 
         <h3
           className="
-            font-bold text-sm h-10 line-clamp-2
+            font-bold
+            text-xs sm:text-sm
+            h-9 sm:h-10
+            line-clamp-2
             text-[hsl(0_0%_9%)]
             group-hover:text-[hsl(71_56%_47%)]
             transition-colors
@@ -127,12 +138,12 @@ const ProductCard = ({
         {/* PRICE */}
         <div className="space-y-0.5">
           <div className="flex items-center gap-2">
-            <span className="text-lg font-black text-[hsl(0_0%_9%)]">
+            <span className="text-base sm:text-lg font-black text-[hsl(0_0%_9%)]">
               ₹{price}
             </span>
 
             {originalPrice && (
-              <span className="text-xs text-gray-400 line-through">
+              <span className="text-[10px] sm:text-xs text-gray-400 line-through">
                 ₹{originalPrice}
               </span>
             )}
@@ -140,7 +151,8 @@ const ProductCard = ({
 
           <p
             className="
-              text-[10px] font-bold uppercase tracking-tighter
+              text-[9px] sm:text-[10px]
+              font-bold uppercase tracking-tighter
               text-[hsl(71_56%_47%)]
             "
           >
@@ -150,13 +162,15 @@ const ProductCard = ({
 
         {/* VARIANTS */}
         {variants && variants.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 py-1">
+          <div className="flex flex-wrap gap-1 sm:gap-1.5 py-1">
             {variants.map((variant) => (
               <button
                 key={variant}
                 onClick={() => setSelectedVariant(variant)}
                 className={`
-                  px-2 py-1 text-[10px] font-bold
+                  px-2 py-1
+                  text-[9px] sm:text-[10px]
+                  font-bold
                   rounded-md border transition-all
                   ${
                     selectedVariant === variant
@@ -175,8 +189,9 @@ const ProductCard = ({
         <button
           onClick={handleAddToCart}
           className={`
-            w-full py-2.5 rounded-xl
-            font-bold text-sm
+            w-full py-2 sm:py-2.5
+            rounded-xl
+            font-bold text-xs sm:text-sm
             flex items-center justify-center gap-2
             transition-all
             ${
@@ -188,12 +203,14 @@ const ProductCard = ({
         >
           {isAdded ? (
             <>
-              <Check size={16} strokeWidth={3} />
+              <Check size={14} className="sm:hidden" strokeWidth={3} />
+              <Check size={16} className="hidden sm:block" strokeWidth={3} />
               Added
             </>
           ) : (
             <>
-              <Plus size={16} strokeWidth={3} />
+              <Plus size={14} className="sm:hidden" strokeWidth={3} />
+              <Plus size={16} className="hidden sm:block" strokeWidth={3} />
               Add
             </>
           )}
