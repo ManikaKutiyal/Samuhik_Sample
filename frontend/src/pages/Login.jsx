@@ -38,8 +38,8 @@ const handleSubmit = async (e) => {
   // ✅ REAL AUTH (EMAIL)
   try {
     const url = isLogin
-      ? "http://localhost:5000/api/auth/login"
-      : "http://localhost:5000/api/auth/signup";
+      ? "https://samuhik-sample-8eso.vercel.app/auth/login"
+      : "https://samuhik-sample-8eso.vercel.app/auth/signup";
 
     const res = await axios.post(url, {
       email: formData.email,
