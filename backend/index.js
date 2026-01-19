@@ -13,7 +13,7 @@ app.use(cors({
   credentials: true
 }));
 
-// IMPORTANT for preflight
+// handle preflight
 app.options("*", cors());
 
 app.use(express.json());
@@ -24,3 +24,12 @@ app.use("/api/cart", cartRoutes);
 app.get("/", (req, res) => {
   res.send("Backend running");
 });
+
+mongoose
+  .connect(process.env.MONGO_URI) // USE ATLAS
+  .then(() => {
+    app.listen(5000, () =>
+      console.log("Server running on port 5000")
+    );
+  })
+  .catch(err => console.log(err));
